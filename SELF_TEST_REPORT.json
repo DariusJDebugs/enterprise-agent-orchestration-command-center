@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "phase": 3,
+  "automated_proof_scenarios": 7,
+  "deployment_proofs": 4,
+  "python_runtime": "3.13.5",
+  "readiness": true,
+  "schema_version": 3,
+  "backup_restore": true,
+  "agents": 11,
+  "tools": 5,
+  "standard_mission": {
+    "mission_id": "893c3c0a-1d3b-4c1c-ac77-fd7b60903370",
+    "tasks": 11,
+    "events": 33,
+    "messages": 19,
+    "tool_calls": 3,
+    "traces": 11,
+    "metrics": 34,
+    "audit_records": 36,
+    "audit_valid": true,
+    "citations": 8
+  },
+  "proofs": {
+    "prompt_injection_blocked": true,
+    "unauthorized_tool_denied": true,
+    "human_approval_gate": true,
+    "retry_recovery": true,
+    "weak_report_repaired": true,
+    "budget_limit_enforced": true,
+    "pause_resume_stop": true
+  }
+}

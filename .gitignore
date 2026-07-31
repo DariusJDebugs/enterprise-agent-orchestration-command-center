@@ -1,0 +1,70 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.production.example
+secrets/*
+!secrets/.gitkeep
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+
+# Runtime data
+data/*.db
+data/*.sqlite*
+data/*.db-*
+data/uploads/*
+!data/uploads/.gitkeep
+data/backups/*
+!data/backups/.gitkeep
+*.log
+logs/
+
+# Generated/build artifacts
+build/
+dist/
+*.egg-info/
+site/
+.tmp/
+tmp/
+*.tmp
+*.bak
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.mp4
+*.mov
+*.webm
+
+# IDE and OS
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local evidence and tool output
+release_assets/
+release-artifacts/
+playwright-report/
+test-results/
+release_evidence/logs/

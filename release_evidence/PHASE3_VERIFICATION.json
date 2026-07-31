@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-07-31T21:49:39.498435+00:00",
+  "python": "3.13.5",
+  "python_requirement_satisfied": true,
+  "platform": {
+    "system": "Linux",
+    "machine": "x86_64"
+  },
+  "required_files": {
+    "passed": true,
+    "missing": [],
+    "count": 22
+  },
+  "container_static_validation": {
+    "passed": true,
+    "non_root": true,
+    "read_only_root": true,
+    "capabilities_dropped": true,
+    "secret_mount": true,
+    "docker_engine_available": false
+  },
+  "compileall": {
+    "passed": true
+  },
+  "javascript": {
+    "command": [
+      "node",
+      "--check",
+      "app/static/app.js"
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  "pytest": {
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  "phase3_self_test": {
+    "command": [
+      "python",
+      "scripts/run_phase3_self_test.py"
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  "runtime_smoke": {
+    "passed": true,
+    "health": {
+      "status": "healthy",
+      "application": "Enterprise Agent Orchestration Command Center",
+      "phase": 3,
+      "version": "3.0.0",
+      "database": "configured",
+      "llm_mode": "deterministic",
+      "registered_agents": 11,
+      "registered_tools": 5,
+      "registered_connectors": 2,
+      "governance": "enforced",
+      "audit": "tamper-evident HMAC chain",
+      "environment": "verification",
+      "build_commit": "local"
+    },
+    "readiness": {
+      "status": "ready",
+      "phase": 3,
+      "version": "3.0.0",
+      "environment": "verification",
+      "database": {
+        "reachable": true,
+        "integrity": "ok",
+        "journal_mode": "wal",
+        "schema_version": 3,
+        "expected_schema_version": 3
+      },
+      "directories": {
+        "database_parent_writable": true,
+        "upload_directory_ready": true,
+        "backup_directory_ready": true
+      },
+      "secure_configuration": {
+        "enforced": false,
+        "findings": [
+          "AUDIT_HMAC_SECRET must be a unique random value of at least 32 characters"
+        ]
+      }
+    },
+    "mcp_tool_count": 5,
+    "openapi_path_count": 27
+  },
+  "mcp_sdk": {
+    "dependency_declared": true,
+    "sdk_importable_in_validation_environment": false,
+    "http_jsonrpc_contract_tested": true
+  },
+  "github_hygiene": {
+    "generated_at": "2026-07-31T21:49:50.289875+00:00",
+    "status": "PASS",
+    "files_scanned": 111,
+    "source_bytes": 2073304,
+    "checks": [
+      "private filesystem paths",
+      "personal identifiers",
+      "credential patterns",
+      "forbidden runtime artifacts",
+      "oversized release media",
+      "stale interface claims",
+      "required publication files"
+    ],
+    "findings": []
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Governed enterprise multi-agent orchestration reference implementation">
+  <title>Enterprise Agent Command Center</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">EA</div><div><strong>Enterprise Agent</strong><span>Command Center</span></div></div>
+      <nav class="nav">
+        <button class="nav-item active" data-view="overview"><span>⌂</span> Command overview</button>
+        <button class="nav-item" data-view="knowledge"><span>▤</span> Knowledge & security</button>
+        <button class="nav-item" data-view="missions"><span>◇</span> Mission history</button>
+        <button class="nav-item" data-view="governance"><span>⚿</span> Governance lab</button>
+        <button class="nav-item" data-view="architecture"><span>⌘</span> Architecture</button>
+      </nav>
+      <div class="sidebar-status"><div class="status-row"><span class="pulse-dot"></span><span id="systemStatus">Connecting…</span></div><small>Phase 3 pilot-ready runtime</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">ENTERPRISE AI OPERATIONS</p><h1 id="viewTitle">Command overview</h1></div>
+        <div class="topbar-actions">
+          <label class="role-select">Active role<select id="roleSelect"><option value="admin">Admin</option><option value="risk_manager">Risk manager</option><option value="analyst">Analyst</option><option value="viewer">Viewer</option></select></label>
+          <button class="button ghost" id="seedDemoBtn">Load demonstration data</button>
+          <button class="button primary" id="newMissionBtn">New vendor review</button>
+        </div>
+      </header>
+      <div id="toastRegion" class="toast-region" aria-live="polite"></div>
+
+      <section id="overviewView" class="view active">
+        <div class="hero-panel">
+          <div><p class="eyebrow">GOVERNED MULTI-AGENT WORKFLOW</p><h2>Enterprise decisions with control-plane evidence</h2><p>Orchestrate specialists under RBAC, tool allowlists, human approvals, prompt-injection isolation, budget limits, checkpoint recovery, red-team evaluation, and tamper-evident audit.</p></div>
+          <div class="hero-badge"><span id="agentCount">11</span><small>Governed agents</small></div>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-card"><span class="metric-label">Knowledge documents</span><strong id="metricDocuments">0</strong><small>Security scanned and citable</small></article>
+          <article class="metric-card"><span class="metric-label">Missions</span><strong id="metricMissions">0</strong><small>Persistent governed history</small></article>
+          <article class="metric-card"><span class="metric-label">Registered tools</span><strong id="metricTools">0</strong><small>Explicit permission policies</small></article>
+          <article class="metric-card"><span class="metric-label">System state</span><strong class="healthy-text" id="metricHealth">—</strong><small>Backend, database, governance</small></article>
+        </div>
+        <div class="content-grid two-thirds">
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">MISSION CONTROL</p><h3>Recent vendor reviews</h3></div><button class="text-button" id="refreshBtn">Refresh</button></div><div id="missionList" class="mission-list empty-state">No missions yet.</div></section>
+          <section class="panel compact-panel"><div class="panel-heading"><div><p class="eyebrow">WORKFLOW</p><h3>Governed agent graph</h3></div></div><div id="miniGraph" class="mini-graph"></div></section>
+        </div>
+      </section>
+
+      <section id="knowledgeView" class="view">
+        <div class="content-grid two-thirds">
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">SECURITY-SCANNED KNOWLEDGE</p><h3>Indexed documents</h3></div><label class="button primary file-button">Upload untrusted document<input id="documentUpload" type="file" multiple accept=".txt,.md,.csv,.json,.pdf,.docx"></label></div><div id="documentList" class="document-list empty-state">No documents indexed.</div></section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">RAG & INCIDENT INSPECTOR</p><h3>Safe retrieval boundary</h3></div></div><form id="searchForm" class="stack-form"><label>Search enterprise evidence<textarea id="searchQuery" rows="4" placeholder="SOC 2, breach notification, disaster recovery"></textarea></label><button class="button primary" type="submit">Run security-cleared search</button></form><div id="searchResults" class="search-results"></div><div class="panel-heading subheading"><div><p class="eyebrow">SECURITY INCIDENTS</p><h3>Quarantine register</h3></div></div><div id="incidentList" class="document-list"></div></section>
+        </div>
+      </section>
+
+      <section id="missionsView" class="view"><section class="panel"><div class="panel-heading"><div><p class="eyebrow">PERSISTENT HISTORY</p><h3>All missions</h3></div></div><div id="allMissionList" class="mission-list empty-state">No missions have been created.</div></section></section>
+
+      <section id="governanceView" class="view">
+        <div class="content-grid two-thirds">
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">ADVERSARIAL PROOF LAB</p><h3>Run governed control scenarios</h3></div></div><p class="muted">Each scenario creates a real mission and preserves its proof in events, tool calls, traces, metrics, approvals, security incidents, and the audit chain.</p><div id="proofGrid" class="proof-grid"></div></section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">RBAC & TOOL POLICY</p><h3>Permission matrix</h3></div></div><div id="governanceMatrix" class="requirements-list"></div></section>
+        </div>
+      </section>
+
+      <section id="architectureView" class="view"><div class="content-grid two-thirds"><section class="panel"><div class="panel-heading"><div><p class="eyebrow">ORCHESTRATION RUNTIME</p><h3>Dependency graph</h3></div></div><div id="architectureGraph" class="architecture-graph"></div></section><section class="panel"><div class="panel-heading"><div><p class="eyebrow">REQUIREMENTS EVIDENCE</p><h3>Capability coverage</h3></div></div><div id="requirementsList" class="requirements-list"></div></section></div></section>
+
+      <section id="missionDetailView" class="view">
+        <button class="back-button" id="backToMissions">← Back to missions</button>
+        <div class="mission-header panel">
+          <div><p class="eyebrow">GOVERNED ORCHESTRATION MISSION</p><h2 id="detailTitle">Mission</h2><p id="detailObjective" class="muted"></p><div id="budgetReadout" class="budget-readout"></div></div>
+          <div class="mission-status-block"><span id="detailStatus" class="status-pill">queued</span><div class="risk-readout"><small>Risk posture</small><strong id="detailRisk">UNKNOWN</strong></div></div>
+        </div>
+        <div class="control-bar"><button class="button ghost" data-control="pause">Pause</button><button class="button ghost" data-control="resume">Resume</button><button class="button danger-button" data-control="stop">Stop</button><span id="auditBadge" class="status-pill">Audit —</span></div>
+        <div class="detail-tabs" role="tablist">
+          <button class="detail-tab active" data-tab="agents">Agent workflow</button><button class="detail-tab" data-tab="approvals">Approvals</button><button class="detail-tab" data-tab="observability">Observability</button><button class="detail-tab" data-tab="security">Security</button><button class="detail-tab" data-tab="timeline">Timeline</button><button class="detail-tab" data-tab="messages">Messages</button><button class="detail-tab" data-tab="tools">Tool calls</button><button class="detail-tab" data-tab="audit">Audit</button><button class="detail-tab" data-tab="report">Final report</button>
+        </div>
+        <div id="agentsTab" class="detail-tab-content active"><section class="panel"><div id="taskGraph" class="task-graph"></div></section></div>
+        <div id="approvalsTab" class="detail-tab-content"><section class="panel"><div id="approvalList" class="approval-list"></div></section></div>
+        <div id="observabilityTab" class="detail-tab-content"><section class="panel"><div id="metricSummary" class="metric-grid detail-metrics"></div><div id="traceList" class="tool-call-list"></div></section></div>
+        <div id="securityTab" class="detail-tab-content"><section class="panel"><div id="missionSecurityList" class="document-list"></div></section></div>
+        <div id="timelineTab" class="detail-tab-content"><section class="panel"><div id="eventTimeline" class="timeline"></div></section></div>
+        <div id="messagesTab" class="detail-tab-content"><section class="panel"><div id="messageList" class="message-list"></div></section></div>
+        <div id="toolsTab" class="detail-tab-content"><section class="panel"><div id="toolCallList" class="tool-call-list"></div></section></div>
+        <div id="auditTab" class="detail-tab-content"><section class="panel"><div id="auditList" class="tool-call-list"></div></section></div>
+        <div id="reportTab" class="detail-tab-content"><section class="panel report-panel"><div id="finalReport" class="markdown-body empty-state">The final report will appear after governance gates pass.</div></section></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="missionDialog" class="dialog"><form id="missionForm" method="dialog"><div class="dialog-header"><div><p class="eyebrow">NEW GOVERNED MISSION</p><h2>Launch vendor review</h2></div><button class="icon-button" id="closeDialogBtn" type="button">×</button></div><label>Mission title<input id="missionTitle" required minlength="3" value="Enterprise vendor risk and compliance review"></label><label>Vendor name<input id="vendorName" required minlength="2" placeholder="Northstar Cloud Systems"></label><label>Review objective<textarea id="missionObjective" required minlength="10" rows="5">Assess the vendor against internal security, privacy, compliance, financial-continuity, service-level, incident-response, and disaster-recovery requirements. Produce a source-cited recommendation and preserve all evidence gaps.</textarea></label><div class="dialog-grid"><label>Cost budget (USD)<input id="budgetUsd" type="number" min="0.01" step="0.01" value="2.00"></label><label>Token budget<input id="tokenBudget" type="number" min="100" step="100" value="50000"></label></div><label class="checkbox-label"><input id="approvalRequired" type="checkbox" checked> Require human approval for high/critical risk</label><div class="dialog-footer"><button class="button ghost" id="cancelMissionBtn" type="button">Cancel</button><button class="button primary" type="submit">Launch orchestration</button></div></form></dialog>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

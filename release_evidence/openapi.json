@@ -1,0 +1,1825 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Enterprise Agent Orchestration Command Center",
+    "description": "Enterprise pilot-ready governed multi-agent vendor-risk command center with requirements-driven evidence, secure configuration, recovery, observability, and deployment controls.",
+    "version": "3.0.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Api Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/readiness": {
+      "get": {
+        "summary": "Readiness",
+        "operationId": "readiness_api_readiness_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/version": {
+      "get": {
+        "summary": "Version",
+        "operationId": "version_api_version_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Version Api Version Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/architecture": {
+      "get": {
+        "summary": "Architecture",
+        "operationId": "architecture_api_architecture_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Architecture Api Architecture Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/requirements": {
+      "get": {
+        "summary": "Requirements Matrix",
+        "operationId": "requirements_matrix_api_requirements_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Requirements Matrix Api Requirements Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/governance": {
+      "get": {
+        "summary": "Governance Matrix",
+        "operationId": "governance_matrix_api_governance_get",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Governance Matrix Api Governance Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/documents/upload": {
+      "post": {
+        "summary": "Upload Documents",
+        "operationId": "upload_documents_api_documents_upload_post",
+        "parameters": [
+          {
+            "name": "trust_state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^(trusted|untrusted)$",
+              "default": "untrusted",
+              "title": "Trust State"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_documents_api_documents_upload_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Upload Documents Api Documents Upload Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/documents": {
+      "get": {
+        "summary": "List Documents",
+        "operationId": "list_documents_api_documents_get",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Documents Api Documents Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/security/incidents": {
+      "get": {
+        "summary": "Security Incidents",
+        "operationId": "security_incidents_api_security_incidents_get",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Security Incidents Api Security Incidents Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/knowledge/search": {
+      "post": {
+        "summary": "Search Knowledge",
+        "operationId": "search_knowledge_api_knowledge_search_post",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Knowledge Api Knowledge Search Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/demo/seed": {
+      "post": {
+        "summary": "Seed Demo",
+        "operationId": "seed_demo_api_demo_seed_post",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Seed Demo Api Demo Seed Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions": {
+      "post": {
+        "summary": "Create Mission",
+        "operationId": "create_mission_api_missions_post",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MissionCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Create Mission Api Missions Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Missions",
+        "operationId": "list_missions_api_missions_get",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Missions Api Missions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}": {
+      "get": {
+        "summary": "Get Mission",
+        "operationId": "get_mission_api_missions__mission_id__get",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Mission Api Missions  Mission Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}/run": {
+      "post": {
+        "summary": "Run Mission",
+        "operationId": "run_mission_api_missions__mission_id__run_post",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Run Mission Api Missions  Mission Id  Run Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}/control": {
+      "post": {
+        "summary": "Mission Control",
+        "operationId": "mission_control_api_missions__mission_id__control_post",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ControlAction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Mission Control Api Missions  Mission Id  Control Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}/approvals": {
+      "get": {
+        "summary": "List Approvals",
+        "operationId": "list_approvals_api_missions__mission_id__approvals_get",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Approvals Api Missions  Mission Id  Approvals Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}/approvals/{approval_id}/decide": {
+      "post": {
+        "summary": "Decide Approval",
+        "operationId": "decide_approval_api_missions__mission_id__approvals__approval_id__decide_post",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          },
+          {
+            "name": "approval_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Approval Id"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalDecision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Decide Approval Api Missions  Mission Id  Approvals  Approval Id  Decide Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}/events": {
+      "get": {
+        "summary": "Mission Events",
+        "operationId": "mission_events_api_missions__mission_id__events_get",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          },
+          {
+            "name": "after_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "After Id"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Mission Events Api Missions  Mission Id  Events Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}/audit": {
+      "get": {
+        "summary": "Mission Audit",
+        "operationId": "mission_audit_api_missions__mission_id__audit_get",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Mission Audit Api Missions  Mission Id  Audit Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}/audit/export": {
+      "get": {
+        "summary": "Audit Export",
+        "operationId": "audit_export_api_missions__mission_id__audit_export_get",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/missions/{mission_id}/stream": {
+      "get": {
+        "summary": "Mission Stream",
+        "operationId": "mission_stream_api_missions__mission_id__stream_get",
+        "parameters": [
+          {
+            "name": "mission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Mission Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/connectors": {
+      "get": {
+        "summary": "List Connectors",
+        "operationId": "list_connectors_api_connectors_get",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Connectors Api Connectors Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/connectors/{connector_name}/execute": {
+      "post": {
+        "summary": "Execute Connector",
+        "operationId": "execute_connector_api_connectors__connector_name__execute_post",
+        "parameters": [
+          {
+            "name": "connector_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Connector Name"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectorExecuteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Execute Connector Api Connectors  Connector Name  Execute Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tools": {
+      "get": {
+        "summary": "List Tools",
+        "operationId": "list_tools_api_tools_get",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response List Tools Api Tools Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tools/{tool_name}/call": {
+      "post": {
+        "summary": "Call Tool",
+        "operationId": "call_tool_api_tools__tool_name__call_post",
+        "parameters": [
+          {
+            "name": "tool_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tool Name"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToolCallRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Call Tool Api Tools  Tool Name  Call Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/demo/proof/{scenario}": {
+      "post": {
+        "summary": "Run Proof Scenario",
+        "operationId": "run_proof_scenario_api_demo_proof__scenario__post",
+        "parameters": [
+          {
+            "name": "scenario",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Scenario"
+            }
+          },
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Run Proof Scenario Api Demo Proof  Scenario  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp": {
+      "post": {
+        "summary": "Mcp Jsonrpc",
+        "operationId": "mcp_jsonrpc_mcp_post",
+        "parameters": [
+          {
+            "name": "X-Role",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "admin",
+              "title": "X-Role"
+            }
+          },
+          {
+            "name": "X-Actor",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "local-operator",
+              "title": "X-Actor"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MCPRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApprovalDecision": {
+        "properties": {
+          "decision": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "rejected"
+            ],
+            "title": "Decision"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Note",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "decision"
+        ],
+        "title": "ApprovalDecision"
+      },
+      "Body_upload_documents_api_documents_upload_post": {
+        "properties": {
+          "files": {
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "type": "array",
+            "title": "Files"
+          }
+        },
+        "type": "object",
+        "required": [
+          "files"
+        ],
+        "title": "Body_upload_documents_api_documents_upload_post"
+      },
+      "ConnectorExecuteRequest": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          },
+          "mission_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mission Id"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "ConnectorExecuteRequest"
+      },
+      "ControlAction": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "pause",
+              "resume",
+              "stop"
+            ],
+            "title": "Action"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Reason",
+            "default": "Operator control"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "ControlAction"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "MCPRequest": {
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "title": "Jsonrpc",
+            "default": "2.0"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "params": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Params"
+          }
+        },
+        "type": "object",
+        "required": [
+          "method"
+        ],
+        "title": "MCPRequest"
+      },
+      "MissionCreate": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "vendor_name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Vendor Name"
+          },
+          "objective": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 10,
+            "title": "Objective"
+          },
+          "auto_run": {
+            "type": "boolean",
+            "title": "Auto Run",
+            "default": true
+          },
+          "budget_usd": {
+            "type": "number",
+            "maximum": 1000.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Budget Usd",
+            "default": 2.0
+          },
+          "token_budget": {
+            "type": "integer",
+            "maximum": 10000000.0,
+            "minimum": 100.0,
+            "title": "Token Budget",
+            "default": 50000
+          },
+          "require_approval_for_high_risk": {
+            "type": "boolean",
+            "title": "Require Approval For High Risk",
+            "default": true
+          },
+          "proof_scenario": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "prompt_injection",
+              "unauthorized_tool",
+              "high_risk_approval",
+              "retry_recovery",
+              "weak_report_repair",
+              "budget_limit"
+            ],
+            "title": "Proof Scenario",
+            "default": "standard"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "vendor_name",
+          "objective"
+        ],
+        "title": "MissionCreate"
+      },
+      "SearchRequest": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 2,
+            "title": "Query"
+          },
+          "top_k": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Top K",
+            "default": 6
+          },
+          "include_quarantined": {
+            "type": "boolean",
+            "title": "Include Quarantined",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "title": "SearchRequest"
+      },
+      "ToolCallRequest": {
+        "properties": {
+          "arguments": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Arguments"
+          },
+          "mission_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mission Id"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "title": "ToolCallRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

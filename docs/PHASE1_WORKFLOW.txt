@@ -1,0 +1,33 @@
+Phase 1 — Build the complete working system
+
+This is the largest phase. We build the application from zero into a fully functioning end-to-end MVP.
+
+Included
+Python/FastAPI backend
+Command-center frontend
+LangGraph or comparable orchestration framework
+Coordinator and specialized agents
+Task decomposition and dependency graph
+Agent-to-agent communication
+Prompt and context management
+Shared mission state
+RAG document ingestion and retrieval
+Vector database and embeddings
+Source citations
+MCP tool server
+REST API connector framework
+Enterprise workflow automation
+Vendor-risk demonstration workflow
+Database and persistent mission history
+Phase 1 completion test
+
+A user can:
+
+Upload enterprise documents.
+Submit a vendor-review mission.
+Watch multiple agents collaborate.
+See agents retrieve internal information.
+Execute approved MCP and REST tools.
+Receive an evidence-backed final report.
+
+This phase covers the core engineering requirements: orchestration, frameworks, context management, RAG, MCP, vectors, Python, REST integrations, and workflow automation.

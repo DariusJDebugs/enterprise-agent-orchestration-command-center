@@ -1,0 +1,37 @@
+Phase 3 — Enterprise deployment and challenge evidence
+
+We turn the completed system into something evaluators can inspect, run, and confidently judge.
+
+Included
+Dockerized deployment
+Environment configuration
+Secure secrets management
+Database migrations
+Health and readiness checks
+Backup and recovery instructions
+Production-style logging
+Deployment script
+GitHub repository cleanup
+README and installation guide
+Architecture diagram
+Threat model
+API documentation
+MCP documentation
+Test-results report
+Requirements-to-evidence matrix
+Enterprise case study
+Screenshots
+Demonstration data
+Two-to-four-minute demo video
+Tailored challenge proposal
+Final submission package
+Phase 3 completion test
+
+A reviewer should be able to:
+
+Understand the architecture
+Launch the system
+Run the demonstration
+Inspect the tests
+Verify each challenge requirement
+See the system handle normal and adversarial scenarios

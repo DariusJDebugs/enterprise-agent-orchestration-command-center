@@ -1,0 +1,47 @@
+services:
+  command-center:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: enterprise-agent-command-center:${APP_VERSION:-3.0.0}
+    ports:
+      - "127.0.0.1:${PORT:-8000}:8000"
+    environment:
+      APP_ENV: production
+      APP_VERSION: ${APP_VERSION:-3.0.0}
+      BUILD_COMMIT: ${BUILD_COMMIT:-local}
+      ENFORCE_SECURE_CONFIG: "true"
+      TRUSTED_HOSTS: ${TRUSTED_HOSTS:?Set TRUSTED_HOSTS}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+      DATABASE_PATH: /app/data/command_center.db
+      UPLOAD_DIR: /app/data/uploads
+      BACKUP_DIR: /app/data/backups
+      AUDIT_HMAC_SECRET_FILE: /run/secrets/audit_hmac_secret
+      LLM_MODE: ${LLM_MODE:-deterministic}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_API_KEY_FILE: ${LLM_API_KEY_FILE:-}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      JSON_LOGS: "true"
+      DEFAULT_BUDGET_USD: ${DEFAULT_BUDGET_USD:-2.0}
+      DEFAULT_TOKEN_BUDGET: ${DEFAULT_TOKEN_BUDGET:-50000}
+    secrets:
+      - audit_hmac_secret
+    volumes:
+      - command_center_data:/app/data
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+secrets:
+  audit_hmac_secret:
+    file: ./secrets/audit_hmac_secret
+
+volumes:
+  command_center_data:

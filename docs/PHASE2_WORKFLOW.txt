@@ -1,0 +1,39 @@
+Phase 2 — Governance, security, observability, and validation
+
+We convert the functional MVP into a credible enterprise agent system.
+
+Implemented
+- Human approval gates
+- Role-based access control
+- Agent and tool permissions
+- Risk classification
+- Prompt-injection detection
+- Untrusted-document isolation
+- Unauthorized-action blocking
+- Budget and token limits
+- Stop and pause controls
+- Agent execution traces
+- Prompt, response, and tool-call records
+- Cost and latency monitoring
+- Groundedness evaluation
+- Citation validation
+- Reviewer and red-team agents
+- Failure recovery
+- Retry and idempotency controls
+- Complete tamper-evident audit trail
+- Automated unit, integration, security, and adversarial tests
+- Full-system self-test and repair cycle
+
+Required proof scenarios implemented
+- Prompt injection blocked
+- Unauthorized tool access denied
+- High-risk action paused for human approval
+- Failed agent recovered correctly
+- Weak report rejected and repaired
+- Budget limit stopped execution
+- Final audit record preserved the full decision history
+
+Completion gate
+- 23/23 automated tests passed
+- Phase 2 self-test passed
+- No critical failure remained in the packaged validation run

@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-07-31T21:51:13.102176+00:00",
+  "status": "PASS",
+  "files_scanned": 110,
+  "source_bytes": 2080745,
+  "checks": [
+    "private filesystem paths",
+    "personal identifiers",
+    "credential patterns",
+    "forbidden runtime artifacts",
+    "oversized release media",
+    "stale interface claims",
+    "required publication files"
+  ],
+  "findings": []
+}

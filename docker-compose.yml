@@ -1,0 +1,20 @@
+services:
+  command-center:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: development
+      ENFORCE_SECURE_CONFIG: "false"
+      DATABASE_PATH: /app/data/command_center.db
+      UPLOAD_DIR: /app/data/uploads
+      BACKUP_DIR: /app/data/backups
+      AGENT_STEP_DELAY_MS: 100
+      LLM_MODE: deterministic
+      JSON_LOGS: "true"
+    volumes:
+      - command_center_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  command_center_data:

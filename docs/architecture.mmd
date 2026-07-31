@@ -1,0 +1,24 @@
+flowchart TB
+  UI[Command Center UI] --> API[FastAPI / OpenAPI]
+  MCP[MCP JSON-RPC + FastMCP adapter] --> API
+  API --> GOV[Governance: RBAC / approvals / budgets / controls]
+  API --> ORCH[Persistent dependency-graph orchestrator]
+  ORCH --> A1[Coordinator]
+  A1 --> A2[Knowledge]
+  A1 --> A3[Vendor Intelligence]
+  A2 --> A4[Security]
+  A2 --> A5[Compliance]
+  A3 --> A6[Financial]
+  A3 --> A7[Operations]
+  A4 --> A8[Independent Reviewer]
+  A5 --> A8
+  A6 --> A8
+  A7 --> A8
+  A8 --> A9[Draft Report]
+  A9 --> A10[Adversarial Red Team]
+  A10 --> A11[Final Report]
+  ORCH --> TOOLS[Permission-scoped tools / REST connectors]
+  ORCH --> RAG[RAG / embeddings / citations]
+  ORCH --> DB[(SQLite state + audit chain)]
+  API --> OBS[Structured logs / traces / metrics / readiness]
+  DB --> OPS[Migration / backup / restore]

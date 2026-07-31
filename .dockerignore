@@ -1,0 +1,59 @@
+# Version control and CI metadata
+.git
+.github
+.gitignore
+.gitattributes
+
+# Local environments and caches
+.venv
+venv
+__pycache__
+.pytest_cache
+.ruff_cache
+.mypy_cache
+*.pyc
+*.pyo
+.coverage*
+htmlcov
+
+# Secrets and configuration
+.env
+.env.*
+secrets
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Runtime/customer data
+*.db
+*.sqlite*
+*.db-shm
+*.db-wal
+data/*
+!data/.gitkeep
+!data/uploads/.gitkeep
+!data/backups/.gitkeep
+
+# Evidence and release-only media
+release_evidence
+release_assets
+release-artifacts
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.mp4
+*.mov
+*.webm
+
+# Development/editor artifacts
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+*.log
+logs
+build
+dist
+*.egg-info
